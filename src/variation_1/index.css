@@ -1,6 +1,6 @@
 .pah .pah159_loaded,
 body.pah159_loaded {
-    .add-to-basket__btn-row .add-to-basket__add-btn {
+    & .add-to-basket__btn-row .add-to-basket__add-btn {
         display: none !important;
     }
 }
