@@ -2,10 +2,12 @@ import { elementManagement, log } from "../norman"
 import detect_cta_status from "./detect_cta_status"
 
 export default function handle_interaction(preference = "delivery", type="oneTimePurchase") {
+    log({preference})
     let status = detect_cta_status()
+    log({status})
     let type_availability = status[type]
     let preference_is_available = type_availability[preference]
-    log(preference_is_available)
+    log({preference_is_available})
     if(!preference_is_available) {
         log({
             error: "Preference isn't available, defaulting to alternate method",
@@ -22,7 +24,9 @@ export default function handle_interaction(preference = "delivery", type="oneTim
         return false
     }
     let preference_selector_property_name = preference == "delivery" ? "deliverySelector" : "clickAndCollectSelector"
-    let original_cta_selector = status["elements"][preference_selector_property_name]
-    let original_cta = elementManagement.get(original_cta_selector).pop(0)
-    original_cta.click()
+    let original_cta_selector = status["elements"][type][preference_selector_property_name]
+    log({original_cta_selector})
+    let original_cta = elementManagement.get(original_cta_selector)
+    log({original_cta})
+    original_cta.pop().click()
 }
