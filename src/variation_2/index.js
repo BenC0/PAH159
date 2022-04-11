@@ -7,7 +7,7 @@ function init() {
 }
 
 const Variant = {
-    name: "Variation 1",
+    name: "Variation 2",
     css: variationCSS,
     conditions: () => {
         let conditions = []
