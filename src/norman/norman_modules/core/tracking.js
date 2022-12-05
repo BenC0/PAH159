@@ -6,7 +6,8 @@ import log from "./log.js"
  * @param {string} eventAction Event action to be tracked
  * @param {boolean} impressionEvent Flags where to track event as impression and use custom dimension.
  */
-export function pushToDataLayer(variant = "", eventAction = "", impressionEvent = false) {
+export function pushToDataLayer(variant = "", eventAction = "", impressionEvent = false, dimension = false) {
+	dimension = !dimension ? config.tracking.google_analytics.dimension : dimension
 	if (variant !== "" && eventAction !== "") {
 		window.dataLayer = window.dataLayer || []
 		let eventObject = {
@@ -15,11 +16,11 @@ export function pushToDataLayer(variant = "", eventAction = "", impressionEvent 
 			'eventLabel': `${config.id}-${variant}`,
 		}
 
-		if (impressionEvent !== false && config.tracking.google_analytics.dimension !== "") {
+		if (impressionEvent !== false && dimension !== "") {
 			eventObject = {
 				'event': 'CRO_Test_Impression',
 				'testID': config.id,
-				'dimension': config.tracking.google_analytics.dimension,
+				'dimension': dimension,
 				'variation': variant,
 			}
 		}
@@ -47,8 +48,8 @@ export function hotjar_impression_event(variant) {
  * @param {string} action Event action to be tracked
  * @param {boolean} [impression=false] Flags where to track event as impression or not.
  */
-export default function track(variant, action, impression = false) {
-    pushToDataLayer(variant, action, impression)
+export default function track(variant, action, impression = false, dimension = false) {
+    pushToDataLayer(variant, action, impression, dimension)
 	if(impression && config.tracking.hotjar.heatmaps) {
 		hotjar_impression_event(variant)
 	}

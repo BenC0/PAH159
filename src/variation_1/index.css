@@ -1,6 +1,21 @@
 .pah .pah159_loaded,
 body.pah159_loaded {
-    & .add-to-basket__btn-row .add-to-basket__add-btn {
+    & .add-to-basket__btn-row .add-to-basket__add-btn.btn {
         display: none !important;
+    }
+
+    & .pah159_additional_messaging {
+        font-size: 0.8rem;
+    }
+
+    & .btn.pdp_add_to_basket {
+        margin: 1.25rem auto 0;
+        min-width: 200px;
+    }
+
+    & .checkout-order-summary__row[style*="opacity: 1;"] {
+        & .checkout-order-summary__product[style*="display:"][style*="none;"] {
+            display: block;
+        }
     }
 }

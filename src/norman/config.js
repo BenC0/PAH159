@@ -4,7 +4,11 @@ export const config = {
     "id": "pah159",
     "tracking": {
         "google_analytics": {
-            "dimension": 22
+            "dimension": {
+                "pdp": 22,
+                "basket": 26,
+                "checkout": 29,
+            }
         },
         "hotjar": {
             "heatmaps": true

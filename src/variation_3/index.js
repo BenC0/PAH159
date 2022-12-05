@@ -23,12 +23,12 @@ function actions() {
         basket_delivery_messaging()
     } else if (this.page_type == "checkout") {
         log("Running Checkout Changes")
-        make_selection("cnc")
+        make_selection("delivery")
     }
 }
 
 const Variant = {
-    name: "Variation 2",
+    name: "Variation 3",
     css: variationCSS,
     page_type: detect_page(),
     conditions: () => {

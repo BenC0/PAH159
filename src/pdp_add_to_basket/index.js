@@ -1,21 +1,23 @@
-import handle_interaction from "./cta_interaction.js"
-import detect_cta_status from "./detect_cta_status.js"
-import cta_html from "./cta.html"
+import detect_status from "./detect_status.js"
+import add_cta from "./add_cta.js"
+import { elementManagement } from "../norman/index.js"
 
 export const pdp_add_to_basket = {
-	cta_html,
-	handle_interaction,
-	detect_status: detect_cta_status,
+	add_cta,
+	detect_status,
 	isValid: () => {
-		let status = detect_cta_status()
+		let status = detect_status()
 		return [
 			status.easyRepeat.cnc,
 			status.oneTimePurchase.cnc,
 			status.oneTimePurchaseEasyRepeatModule.cnc,
 			status.easyRepeat.delivery,
 			status.oneTimePurchase.delivery,
-			status.oneTimePurchaseEasyRepeatModule.delivery,
-		].some(a => a)
+			status.oneTimePurchaseEasyRepeatModule.delivery
+		].some(a => a) && [
+			!elementManagement.exists(".cc-not-available"),
+			!elementManagement.exists(".pdp-stock__message--alert")
+		].every(a => a)
 	}
 }
 

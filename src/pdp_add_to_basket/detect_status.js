@@ -1,4 +1,4 @@
-export default function detect_cta_status() {
+export default function detect_status() {
 	let falseObj = {
 		cnc: false,
 		delivery: false,
@@ -42,9 +42,7 @@ export default function detect_cta_status() {
 		}
 	}
 
-	status.easyRepeat = check_ctas(status.elements.easyRepeat)
 	status.oneTimePurchase = check_ctas(status.elements.oneTimePurchase)
-	status.oneTimePurchaseEasyRepeatModule = check_ctas(status.elements.oneTimePurchaseEasyRepeatModule)
 
 	return status
 }
